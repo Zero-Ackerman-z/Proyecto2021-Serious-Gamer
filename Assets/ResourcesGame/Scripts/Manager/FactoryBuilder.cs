@@ -40,8 +40,7 @@ public class FactoryBuilder : MonoBehaviour
 	{
         
     }
-
-	public GameObject BuilderPlayer(string prefabnameSand, string nickname,Transform spawnTransform)
+	/*public GameObject BuilderPlayer(string prefabnameSand, string nickname,Transform spawnTransform)
 	{
 		
 		GameObject player=null;
@@ -49,6 +48,19 @@ public class FactoryBuilder : MonoBehaviour
 		if (player != null)
 		{
 			PlayerSetup _PlayerSetup = player.GetComponent<PlayerSetup>();
+			player.GetComponent<PhotonView>().Controller.NickName= nickname;
+		}
+		return player;
+	}*/
+	public GameObject BuilderPlayer(string nickname,Transform spawnTransform)
+	{
+		
+		GameObject player=null;
+		//player = PhotonNetwork.Instantiate(Path.Combine("Prefabs/Characters", prefabnameSand), spawnTransform.position, spawnTransform.rotation, 0);
+		player = PhotonNetwork.Instantiate(Path.Combine("Prefabs/Characters", "Player"), spawnTransform.position, spawnTransform.rotation, 0);
+		if (player != null)
+		{
+			//PlayerSetup _PlayerSetup = player.GetComponent<PlayerSetup>();
 			player.GetComponent<PhotonView>().Controller.NickName= nickname;
 		}
 		return player;

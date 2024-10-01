@@ -81,20 +81,21 @@ public class SandController : MonoBehaviourPunCallbacks, IInRoomCallbacks
     private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
     {
         UINickName.text = "NickName: " + PhotonNetwork.NickName;
-        PlayerGame = FactoryBuilder.instance.BuilderPlayer(PlayerInfo.instance.Selectedcharacter, PhotonNetwork.NickName, SpawnerPlayer());
+        //PlayerGame = FactoryBuilder.instance.BuilderPlayer(PlayerInfo.instance.Selectedcharacter, PhotonNetwork.NickName, SpawnerPlayer());
+        PlayerGame = FactoryBuilder.instance.BuilderPlayer(PhotonNetwork.NickName, SpawnerPlayer());
 
 
 
         if (PlayerGame.GetComponent<PhotonView>().IsMine)
         {
 
-            HealthPlayer _HealthPlayerSetup = PlayerGame.GetComponent<HealthPlayer>();
+            //HealthPlayer _HealthPlayerSetup = PlayerGame.GetComponent<HealthPlayer>();
 
-            if (_HealthPlayerSetup != null)
-            {
-                _HealthPlayerSetup.HealthBarLocal = healthUI;
-                _HealthPlayerSetup.IndicatorDamageScreen = IndicatorDamageScreen;
-            }
+            //if (_HealthPlayerSetup != null)
+            //{
+            //    _HealthPlayerSetup.HealthBarLocal = healthUI;
+            //    _HealthPlayerSetup.IndicatorDamageScreen = IndicatorDamageScreen;
+            //}
 
         }
 
@@ -102,7 +103,7 @@ public class SandController : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
         for (int i = 0; i < CountZombie; i++)
         {
-            FactoryBuilder.instance.BuilderZombie("Zombie1", SpawnerZombie());
+            //FactoryBuilder.instance.BuilderZombie("Zombie1", SpawnerZombie());
 
         }
 
@@ -115,13 +116,13 @@ public class SandController : MonoBehaviourPunCallbacks, IInRoomCallbacks
         Transform spawnTransform = spawnPointRoom[indexspawnPoint];
         return spawnTransform;
     }
-    public Transform SpawnerZombie()
-    {
-        int indexspawnPoint = UnityEngine.Random.Range(0, spawnPointZombie.Count - 1);
-        indexspawnPoint = indexspawnPoint % spawnPointZombie.Count;
-        Transform spawnTransform = spawnPointZombie[indexspawnPoint];
-        return spawnTransform;
-    }
+    //public Transform SpawnerZombie()
+    //{
+    //    int indexspawnPoint = UnityEngine.Random.Range(0, spawnPointZombie.Count - 1);
+    //    indexspawnPoint = indexspawnPoint % spawnPointZombie.Count;
+    //    Transform spawnTransform = spawnPointZombie[indexspawnPoint];
+    //    return spawnTransform;
+    //}
     public override void OnDisable()
     {
         PhotonNetwork.RemoveCallbackTarget(this);
